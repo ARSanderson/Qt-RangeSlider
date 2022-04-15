@@ -33,6 +33,9 @@ void RangeSlider::paintEvent(QPaintEvent* aEvent)
     {
         mHandleWidth  = mHandleHeight;
         mHandleHeight = mHandleSize;
+
+        painter.translate( 0, height() );
+        painter.scale( 1, -1 );
     }
 
     QPen pen;
@@ -132,7 +135,7 @@ void RangeSlider::mousePressEvent(QMouseEvent* aEvent)
     {
         int pomheck = (mOrientation == Qt::Horizontal) ? aEvent->pos().y() : aEvent->pos().x();
         int posMax = (mOrientation == Qt::Horizontal) ? height() : width();
-        int posValue = (mOrientation == Qt::Horizontal) ? aEvent->pos().x() : aEvent->pos().y();
+        int posValue = (mOrientation == Qt::Horizontal) ? aEvent->pos().x() : height() - aEvent->pos().y();
         int firstHandleRectPosValue  = (mOrientation == Qt::Horizontal) ? firstHandleRect().x()  : firstHandleRect().y()  + mHandleHeight / 2;
         int secondHandleRectPosValue = (mOrientation == Qt::Horizontal) ? secondHandleRect().x() : secondHandleRect().y() + mHandleHeight / 2;
 
@@ -210,7 +213,7 @@ void RangeSlider::mouseMoveEvent(QMouseEvent* aEvent)
 {
     if(aEvent->buttons() & Qt::LeftButton)
     {
-        int posValue = (mOrientation == Qt::Horizontal) ? aEvent->pos().x() : aEvent->pos().y();
+        int posValue = (mOrientation == Qt::Horizontal) ? aEvent->pos().x() : height() - aEvent->pos().y();
         int firstHandleRectPosValue  = (mOrientation == Qt::Horizontal) ? firstHandleRect().x()  : firstHandleRect().y();
         int secondHandleRectPosValue = (mOrientation == Qt::Horizontal) ? secondHandleRect().x() : secondHandleRect().y();
 
@@ -267,7 +270,6 @@ void RangeSlider::wheelEvent(QWheelEvent * aEvent)
 
     step = (step < 1) ? 1 : step;
     step = std::copysign(step, delta);
-    step *= (mOrientation == Qt::Horizontal) ? 1.0 : -1.0;
 
     if(aEvent->modifiers() & Qt::ShiftModifier)
     {
@@ -280,7 +282,7 @@ void RangeSlider::wheelEvent(QWheelEvent * aEvent)
 
     int posCheck = (mOrientation == Qt::Horizontal) ? aEvent->position().y() : aEvent->position().x();
     int posMax = (mOrientation == Qt::Horizontal) ? height() : width();
-    int posValue = (mOrientation == Qt::Horizontal) ? aEvent->position().x() : aEvent->position().y();
+    int posValue = (mOrientation == Qt::Horizontal) ? aEvent->position().x() : height() - aEvent->position().y();
     int firstHandleRectPosValue  = (mOrientation == Qt::Horizontal) ? firstHandleRect().x()  : firstHandleRect().y()  + mHandleHeight / 2;
     int secondHandleRectPosValue = (mOrientation == Qt::Horizontal) ? secondHandleRect().x() : secondHandleRect().y() + mHandleHeight / 2;
 
