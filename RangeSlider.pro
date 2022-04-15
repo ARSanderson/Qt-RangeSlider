@@ -3,8 +3,7 @@
 # Project created by QtCreator 2018-03-04T22:47:49
 #
 #-------------------------------------------------
-
-QT       += core gui
+QT       += core gui uiplugin
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,11 +23,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 QMAKE_CXXFLAGS += -std=gnu++11
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    RangeSlider.cpp
+SOURCES += main.cpp \
+           mainwindow.cpp \
+           RangeSlider.cpp
 
 HEADERS  += mainwindow.h \
-    RangeSlider.h
+            RangeSlider.h
 
 FORMS    +=

@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QHBoxLayout>
-#include "RangeSlider.h"
+
+class QHBoxLayout;
+class RangeSlider;
 
 namespace Ui {
 class MainWindow;
@@ -18,7 +19,6 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
     QWidget *widget;
     RangeSlider *rsH, *rsV, *rsHsingleLeft, *rsVsingleLeft, *rsHsingleRight, *rsVsingleRight;
     QHBoxLayout *layout;
